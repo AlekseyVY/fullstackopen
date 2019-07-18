@@ -1,0 +1,14 @@
+title fullstackopen (Exercise 0.6)
+
+note over browser:
+JS event handler catches submit event and creates new note,
+adds it to the notes list, rerenders the note list on the 
+page and sends the new note to the server.
+end note
+
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+server-->browser: {"message":"note created"}
+
+note over browser:
+Browser recives confirmation message from server.
+end note
