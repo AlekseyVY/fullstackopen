@@ -13,7 +13,7 @@ browser starts executing java script code from main.js
 that requests JSON data from server 
 end note
 
-browser->server: https://fullstack-exampleapp.herokuapp.com/data.json
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
 server-->browser: [{"content":"HTML is easy","date":"2019-05-23T17:30:31.098Z"}, ...]
 
 note over browser:
