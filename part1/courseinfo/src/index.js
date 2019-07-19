@@ -23,9 +23,9 @@ const Part = (props) => {
 const Content = (props) => {
     return (
         <>
-        <Part p = {props.course.parts[0].name} e = {props.course.parts[0].exercises} />
-        <Part p = {props.course.parts[1].name} e = {props.course.parts[1].exercises} />
-        <Part p = {props.course.parts[2].name} e = {props.course.parts[2].exercises} />
+            <Part p = {props.course.parts[0].name} e = {props.course.parts[0].exercises} />
+            <Part p = {props.course.parts[1].name} e = {props.course.parts[1].exercises} />
+            <Part p = {props.course.parts[2].name} e = {props.course.parts[2].exercises} />
         </>
     )
 }
