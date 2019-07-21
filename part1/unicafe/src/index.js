@@ -11,7 +11,7 @@ const Statistic = (props) => {
 
     return (
         <tr>
-            <td>{props.text}</td> <td>{props.value}</td>
+            <td>{props.text}</td><td>{props.value}</td>
         </tr>
     )
 }
@@ -34,15 +34,19 @@ const Statistics = (value) => {
     } else {
         return (
             <table>
+                <thead>
                 <tr>
-                    <h1>statistics</h1>
+                    <th><h3>Statistics</h3></th>
                 </tr>
+                </thead>
+                <tbody>
                     <Statistic text='good' value={value.g}/>
                     <Statistic text='neutral' value={value.n}/>
                     <Statistic text='bad' value={value.b}/>
                     <Statistic text='all' value={all}/>
                     <Statistic text='average' value={average}/>
                     <Statistic text='positive' value={positivePercent}/>
+                </tbody>
             </table>
         )
     }
