@@ -7,8 +7,14 @@ const Button = (props) => (
     <button onClick={props.handleClick}>{props.text}</button>
 )
 
-const Display = (props) => <span>{props.value}</span>
+const Statistic = (props) => {
 
+    return (
+        <div>
+            {props.text} {props.value}
+        </div>
+    )
+}
 
 const Statistics = (value) => {
 
@@ -27,15 +33,15 @@ const Statistics = (value) => {
         )
     } else {
         return (
-            <div>
+            <>
                 <h1>statistics</h1>
-                <p>good <Display value={value.g}/></p>
-                <p>neutral <Display value={value.n}/></p>
-                <p>bad <Display value={value.b}/></p>
-                <p>all <Display value={all}/></p>
-                <p>average <Display value={average}/></p>
-                <p>positive <Display value={positivePercent}/>%</p>
-            </div>
+                <Statistic text='good' value={value.g}/>
+                <Statistic text='neutral' value={value.n}/>
+                <Statistic text='bad' value={value.b}/>
+                <Statistic text='all' value={all}/>
+                <Statistic text='average' value={average}/>
+                <Statistic text='positive' value={positivePercent}/>
+            </>
         )
     }
 }
