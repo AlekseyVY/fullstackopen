@@ -7,8 +7,8 @@ const Button = (props) => (
     <button onClick={props.handleClick}>{props.text}</button>
 )
 
-
 const Display = (props) => <span>{props.value}</span>
+
 
 const Statistics = (value) => {
 
@@ -18,19 +18,28 @@ const Statistics = (value) => {
     let average = (value.g - value.b) / all
     //variable that calculates positive percentage from all feedback
     let positivePercent = (((all - (value.n + value.b)) / all) * 100)
-
-    return (
-        <div>
-            <h1>statistics</h1>
-            <p>good <Display value={value.g}/></p>
-            <p>neutral <Display value={value.n}/></p>
-            <p>bad <Display value={value.b}/></p>
-            <p>all <Display value={all}/></p>
-            <p>average <Display value={average}/></p>
-            <p>positive <Display value={positivePercent}/>%</p>
-        </div>
-    )
+    //gives feedback when
+    if(value.g === 0 || value.b === 0 || value.n === 0){
+        return (
+            <div>
+                <h3>No feedback given</h3>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <h1>statistics</h1>
+                <p>good <Display value={value.g}/></p>
+                <p>neutral <Display value={value.n}/></p>
+                <p>bad <Display value={value.b}/></p>
+                <p>all <Display value={all}/></p>
+                <p>average <Display value={average}/></p>
+                <p>positive <Display value={positivePercent}/>%</p>
+            </div>
+        )
+    }
 }
+
 
 
 const App = () => {
