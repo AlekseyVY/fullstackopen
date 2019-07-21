@@ -19,7 +19,7 @@ const Statistics = (value) => {
     //variable that calculates positive percentage from all feedback
     let positivePercent = (((all - (value.n + value.b)) / all) * 100)
     //gives feedback when
-    if(value.g === 0 || value.b === 0 || value.n === 0){
+    if(value.g === 0 && value.b === 0 && value.n === 0){
         return (
             <div>
                 <h3>No feedback given</h3>
