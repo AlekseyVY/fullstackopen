@@ -1,8 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 
 
+let index = []
+let votes = []
+
+const findMostVoted = () =>{
+    let max = 0
+    let ind = 0
+    for (let i = 0; i < index.length; i++) {
+        if (max < votes[i]) {
+            max = votes[i]
+            ind = index[i]
+        }
+    }
+    return anecdotes[ind]
+}
 
 
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
@@ -10,10 +24,17 @@ const Button = (props) => <button onClick={props.handleClick}>{props.text}</butt
 const App = (props) => {
     let [selected, setSelected] = useState(0)
     const [point, setPoint] = useState(new Array(anecdotes.length).fill(0))
+    let copyIndex = index.concat(selected)
+    index = copyIndex
+    let copyVotes = votes.concat(point[selected])
+    votes = copyVotes
+
+
 
 
     return (
         <div>
+            <h1>Anecdote of the day</h1>
             <div>
                 {props.anecdotes[selected]}
             </div>
@@ -22,6 +43,10 @@ const App = (props) => {
             </div>
                 <Button handleClick={() => setPoint(point.concat(point[selected] += 1))} text='vote'/>
                 <Button handleClick={() => setSelected(selected = Math.floor(Math.random() * anecdotes.length ))} text='next anecdote'/>
+                <div>
+                    <h1>Anecdote with most votes</h1>
+                    {findMostVoted()}
+        </div>
         </div>
     )
 }
