@@ -22,7 +22,7 @@ const findMostVoted = () =>{
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
 
 const App = (props) => {
-    let [selected, setSelected] = useState(0)
+    const [selected, setSelected] = useState(0)
     const [point, setPoint] = useState(new Array(anecdotes.length).fill(0))
     let copyIndex = index.concat(selected)
     index = copyIndex
@@ -42,7 +42,7 @@ const App = (props) => {
                 has {point[selected]} votes
             </div>
                 <Button handleClick={() => setPoint(point.concat(point[selected] += 1))} text='vote'/>
-                <Button handleClick={() => setSelected(selected = Math.floor(Math.random() * anecdotes.length ))} text='next anecdote'/>
+                <Button handleClick={() => setSelected(Math.floor(Math.random() * anecdotes.length ))} text='next anecdote'/>
                 <div>
                     <h1>Anecdote with most votes</h1>
                     {findMostVoted()}
