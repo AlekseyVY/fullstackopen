@@ -15,13 +15,28 @@ const App =() => {
     ])
     const [newName, setNewName] = useState('')
 
+    let find = 0;
+    const haveContact = () => {
+        persons.map((p) => {
+            if (p.name === newName) {
+                find = 1
+            }
+        })
+    }
+
     const addPhone = (event) => {
         event.preventDefault()
         const newContact = {
             id: persons.length + 1,
             name: newName
         }
-        haveContact(newContact)
+        haveContact()
+        if (find === 1){
+        window.alert(newName + ' is already added to phonebook')
+        } else {
+            setPersons(persons.concat(newContact))
+            setNewName('')
+        }
     }
 
     const handleChange = (event) => {
@@ -30,16 +45,6 @@ const App =() => {
 
     const rows = (persons) => persons.map((p) => <li key={p.id}>{p.name}</li>)
 
-    const haveContact = (newContact) => {
-        persons.map((p) => {
-            if (p.name === newName) {
-                window.alert(newName + ' is already added to phonebook')
-            } else {
-                setPersons(persons.concat(newContact))
-                setNewName('')
-            }
-        })
-    }
 
 
     return (
