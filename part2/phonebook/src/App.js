@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Rows from './components/rows'
+import AddContact from "./components/addcontact";
 
 
 
@@ -20,44 +21,17 @@ const App =() => {
     const [findName, setFindName] = useState('')
     const [showAll, setShowAll] = useState(false)
 
-    let find = 0;
-
-    const haveContact = () => {
-        persons.map((p) => {
-            if (p.name.toLowerCase() === newName.toLowerCase()) {
-                find = 1
-            }
-        })
-    }
-
-    const addPhone = (event) => {
-        event.preventDefault()
-        const newContact = {
-            id: persons.length + 1,
-            name: newName,
-            number: newNumber
-        }
-        haveContact()
-        if (find === 1){
-            window.alert(`${newName} is already added to phonebook`)
-        } else {
-            setPersons(persons.concat(newContact))
-            setNewName('')
-            setNewNumber('')
-        }
-    }
 
     const handleChangeName = (event) => {
         setNewName(event.target.value)
     }
-
     const handleChangeNumber = (event) => {
         setNewNumber(event.target.value)
     }
-
     const handleFind = (event) => {
         setFindName(event.target.value)
     }
+
 
     const filterShow = showAll ? persons : persons.filter(p => p.name.toLowerCase().includes(findName.toLowerCase()))
 
@@ -67,17 +41,9 @@ const App =() => {
             <h1>Phonebook</h1>
             filter shown with <input value={findName} onChange={handleFind} />
             <h2>add a new</h2>
-            <form onSubmit={addPhone}>
-                <div>
-                    name: <input  value={newName} onChange={handleChangeName}/>
-                </div>
-                <div>
-                    number: <input value={newNumber} onChange={handleChangeNumber}/>
-                </div>
-                <div>
-                    <button type='submit'>add</button>
-                </div>
-            </form>
+            <AddContact value={persons} nameState={newName}
+            numberState={newNumber} sPerson={setPersons} sName={setNewName}
+            sNumber={setNewNumber} hcName={handleChangeName} hcNumber={handleChangeNumber}/>
             <h2>Numbers</h2>
             <div>
                 <Rows value={filterShow}/>

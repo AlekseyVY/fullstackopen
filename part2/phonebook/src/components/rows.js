@@ -2,11 +2,12 @@ import React from 'react'
 
 
 
-const Rows = (filterShow) => {
+const Rows = ({value}) => {
 
-    const rows = () => filterShow.value.map((p) => <li key={p.id}>name: {p.name} number: {p.number}</li>)
+    const rows = () => value.map((p) => <li key={p.id}>name: {p.name} number: {p.number}</li>)
     return (
         <div>
+            <h2>Numbers</h2>
         {rows()}
         </div>
     )
