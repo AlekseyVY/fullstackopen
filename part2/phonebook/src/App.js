@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import Rows from './components/rows'
 
 
 
@@ -39,7 +39,7 @@ const App =() => {
         }
         haveContact()
         if (find === 1){
-        window.alert(`${newName} is already added to phonebook`)
+            window.alert(`${newName} is already added to phonebook`)
         } else {
             setPersons(persons.concat(newContact))
             setNewName('')
@@ -58,8 +58,6 @@ const App =() => {
     const handleFind = (event) => {
         setFindName(event.target.value)
     }
-
-    const rows = () => filterShow.map((p) => <li key={p.id}>name: {p.name} number: {p.number}</li>)
 
     const filterShow = showAll ? persons : persons.filter(p => p.name.toLowerCase().includes(findName.toLowerCase()))
 
@@ -82,7 +80,7 @@ const App =() => {
             </form>
             <h2>Numbers</h2>
             <div>
-                {rows()}
+                <Rows value={filterShow}/>
             </div>
         </div>
     )
