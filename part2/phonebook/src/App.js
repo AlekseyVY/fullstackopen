@@ -9,16 +9,19 @@ import React, {useState} from "react";
 
 const App =() => {
     const [persons, setPersons] = useState([
-        {
-            id: 1,
-            name: 'Arto Hellas',
-            number: '+70000000'
-        }
+        {id: 1, name: 'Arto Hellas', number: '040-123456'},
+        {id: 2, name: 'Ada Lovelace', number: '39-44-5323523'},
+        {id: 3, name: 'Dan Abramov', number: '12-43-234345'},
+        {id: 4, name: 'Mary Poppendieck', number: '39-23-6423122'}
     ])
+
     const [newName, setNewName] = useState('')
     const [newNumber, setNewNumber] = useState('')
+    const [findName, setFindName] = useState('')
+    const [showAll, setShowAll] = useState(false)
 
     let find = 0;
+
     const haveContact = () => {
         persons.map((p) => {
             if (p.name.toLowerCase() === newName.toLowerCase()) {
@@ -47,17 +50,25 @@ const App =() => {
     const handleChangeName = (event) => {
         setNewName(event.target.value)
     }
+
     const handleChangeNumber = (event) => {
         setNewNumber(event.target.value)
     }
 
-    const rows = (persons) => persons.map((p) => <li key={p.id}>name: {p.name} number: {p.number}</li>)
+    const handleFind = (event) => {
+        setFindName(event.target.value)
+    }
 
+    const rows = () => filterShow.map((p) => <li key={p.id}>name: {p.name} number: {p.number}</li>)
+
+    const filterShow = showAll ? persons : persons.filter(p => p.name.toLowerCase().includes(findName.toLowerCase()))
 
 
     return (
         <div>
-            <h2>Phonebook</h2>
+            <h1>Phonebook</h1>
+            filter shown with <input value={findName} onChange={handleFind} />
+            <h2>add a new</h2>
             <form onSubmit={addPhone}>
                 <div>
                     name: <input  value={newName} onChange={handleChangeName}/>
@@ -71,7 +82,7 @@ const App =() => {
             </form>
             <h2>Numbers</h2>
             <div>
-                {rows(persons)}
+                {rows()}
             </div>
         </div>
     )
