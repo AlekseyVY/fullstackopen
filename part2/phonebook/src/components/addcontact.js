@@ -2,7 +2,6 @@ import React from 'react'
 
 
 const AddContact =({value, nameState, numberState,sPerson, sName, sNumber, hcName, hcNumber}) => {
-    console.log(nameState)
     let find = 0;
 
     const haveContact = () => {
@@ -31,6 +30,8 @@ const AddContact =({value, nameState, numberState,sPerson, sName, sNumber, hcNam
     }
 
     return (
+        <div>
+            <h2>add a new</h2>
         <form onSubmit={addPhone}>
             <div>
                 name: <input  value={nameState} onChange={hcName}/>
@@ -42,6 +43,7 @@ const AddContact =({value, nameState, numberState,sPerson, sName, sNumber, hcNam
                 <button type='submit'>add</button>
             </div>
         </form>
+        </div>
     )
 
 }
