@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import SearchFilter from "./components/searchFilter";
+import Weather from "./components/weather";
 
 
 
@@ -13,7 +14,7 @@ const App = () => {
            setCountries(respond.data)
         })
     }, [])
-    //countries.map((x) => console.log(x))
+
     return (
         <div>
             <h1>Countries:</h1>

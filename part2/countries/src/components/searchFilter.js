@@ -1,4 +1,5 @@
 import React from 'react'
+import Weather from "./weather";
 
 
 
@@ -23,10 +24,12 @@ const SearchFilter = ({sFBN, fBN, cnt}) => {
             )
         }
     }
+    let countryName = ''
     //renders filtered results
     const rows = cnt.map((x) => {
         if(x.name.toLowerCase().includes(fBN.toLowerCase()) && fBN.length > 0 && counter < 10) {
             if (counter === 1) {
+                countryName = x.capital
                 return (
                     [
                         <div>
@@ -34,7 +37,7 @@ const SearchFilter = ({sFBN, fBN, cnt}) => {
                             <h3>Capital: {x.capital}</h3>
                             <h4>Population: {x.population}</h4>
                             <h4>Languages: {
-                                x.languages.map((a) => <li>{a.name}</li>)
+                                x.languages.map((a) => <li key={a.name}>{a.name}</li>)
                             }</h4>
                             <img src={x.flag} width={300} alt={x.name}/>
                         </div>
@@ -50,9 +53,10 @@ const SearchFilter = ({sFBN, fBN, cnt}) => {
 
     return (
         <div>
-            <input onChange={handleFind}/>
+            find: <input onChange={handleFind}/>
             {helper()}
             {rows}
+            {<Weather cntName={countryName}/>}
         </div>
     )
 }
