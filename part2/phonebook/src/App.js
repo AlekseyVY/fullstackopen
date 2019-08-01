@@ -30,6 +30,8 @@ const App =() => {
 
     const filterShow = filterS.FilterSearch(showAll, persons, findName)
 
+
+
     return (
         <div>
             <h1>Phonebook</h1>
@@ -38,7 +40,7 @@ const App =() => {
                         numberState={newNumber} sPerson={setPersons} sName={setNewName}
                         sNumber={setNewNumber} hcName={handleChangeName} hcNumber={handleChangeNumber}/>
             <div>
-                <Rows value={filterShow}/>
+                <Rows value={filterShow} sPer={setPersons}/>
             </div>
         </div>
     )

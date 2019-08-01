@@ -7,7 +7,7 @@ const AddContact =({value, nameState, numberState,sPerson, sName, sNumber, hcNam
     const haveContact = () => {
         value.map((p) => {
             if (p.name.toLowerCase() === nameState.toLowerCase()) {
-                find = 1
+                find = p.id
             }
         })
     }
@@ -15,13 +15,17 @@ const AddContact =({value, nameState, numberState,sPerson, sName, sNumber, hcNam
     const addPhone = (event) => {
         event.preventDefault()
         const newContact = {
-            id: value.length + 1,
+            id: Math.random(),
             name: nameState,
             number: numberState
         }
         haveContact()
-        if (find === 1){
-            window.alert(`${nameState} is already added to phonebook`)
+        if (find > 0){
+            if(window.confirm(`${nameState} is already added to phonebook, replace the old number with new one?`)) {
+                console.log(find)
+                dbService.update(find, numberState, nameState)
+            }
+
         } else {
             dbService.create(newContact).then(response => {
                 sPerson(value.concat(response.data))
