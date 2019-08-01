@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Rows from './components/rows'
-import axios from 'axios'
 import AddContact from "./components/addcontact";
-
+import dbService from './service/dbService'
 
 
 
@@ -11,12 +10,6 @@ import AddContact from "./components/addcontact";
 
 const App =() => {
     const [persons, setPersons] = useState([])
-
-    useEffect(() => axios.get('http://localhost:3001/persons')
-        .then(response => {
-            setPersons(response.data)
-        }), [])
-
     const [newName, setNewName] = useState('')
     const [newNumber, setNewNumber] = useState('')
     const [findName, setFindName] = useState('')
@@ -33,9 +26,11 @@ const App =() => {
         setFindName(event.target.value)
     }
 
+    useEffect(() => {dbService.getAll().then(response => setPersons(response.data))}, [])
 
     const filterShow = showAll ? persons : persons.filter(p => p.name.toLowerCase().includes(findName.toLowerCase()))
 
+    console.log(persons)
 
     return (
         <div>

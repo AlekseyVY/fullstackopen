@@ -1,5 +1,5 @@
 import React from 'react'
-
+import dbService from '../service/dbService'
 
 const AddContact =({value, nameState, numberState,sPerson, sName, sNumber, hcName, hcNumber}) => {
     let find = 0;
@@ -23,9 +23,11 @@ const AddContact =({value, nameState, numberState,sPerson, sName, sNumber, hcNam
         if (find === 1){
             window.alert(`${nameState} is already added to phonebook`)
         } else {
-            sPerson(value.concat(newContact))
-            sName('')
-            sNumber('')
+            dbService.create(newContact).then(response => {
+                sPerson(value.concat(response.data))
+            })
+           sName('')
+           sNumber('')
         }
     }
 

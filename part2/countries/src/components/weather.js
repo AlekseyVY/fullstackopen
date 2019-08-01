@@ -11,7 +11,7 @@ const Weather = ({cntName}) => {
         })
     }, [cntName])
 
-    
+
     if (weather) {
         return (
             <div>
