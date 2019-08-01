@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Rows from './components/rows'
 import AddContact from "./components/addcontact";
 import dbService from './service/dbService'
-
+import filterS from './components/filterSearch'
 
 
 
@@ -28,9 +28,7 @@ const App =() => {
 
     useEffect(() => {dbService.getAll().then(response => setPersons(response.data))}, [])
 
-    const filterShow = showAll ? persons : persons.filter(p => p.name.toLowerCase().includes(findName.toLowerCase()))
-
-    console.log(persons)
+    const filterShow = filterS.FilterSearch(showAll, persons, findName)
 
     return (
         <div>
