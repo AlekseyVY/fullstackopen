@@ -3,6 +3,7 @@ import Rows from './components/rows'
 import AddContact from "./components/addcontact";
 import dbService from './service/dbService'
 import filterS from './components/filterSearch'
+import Notification from "./components/err";
 
 
 
@@ -14,6 +15,7 @@ const App =() => {
     const [newNumber, setNewNumber] = useState('')
     const [findName, setFindName] = useState('')
     const [showAll, setShowAll] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('some error happened...')
 
 
     const handleChangeName = (event) => {
