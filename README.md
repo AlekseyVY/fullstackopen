@@ -1,2 +1,2 @@
 # fullstackopen
-Full Stack course from university of Helsinki.
+Full Stack course from university of Helsinki
